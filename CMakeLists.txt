@@ -541,6 +541,19 @@ if(ENABLE_TSAN)
   set(CMAKE_EXE_LINKER_FLAGS "-fsanitize=thread")
 endif()
 
+if (COVERAGE)
+  set(CXX_FLAGS "${CXX_FLAGS};-g;-O0;-fprofile-arcs;-ftest-coverage;-fprofile-update=atomic")
+  set(CMAKE_EXE_LINKER_FLAGS "-lgcov --coverage")
+
+  target_compile_options(OpenSTA PUBLIC -g -O0 -fprofile-arcs -ftest-coverage -fprofile-update=atomic)
+  target_link_options(OpenSTA PUBLIC -lgcov --coverage)
+
+  target_compile_options(sta_swig PUBLIC -g -O0 -fprofile-arcs -ftest-coverage -fprofile-update=atomic)
+  target_link_options(sta_swig PUBLIC -lgcov --coverage)
+
+  message(STATUS "Code coverage is enabled in STA")
+endif()
+
 target_compile_options(OpenSTA
   PRIVATE
   $<$<CXX_COMPILER_ID:GNU>:${CXX_FLAGS}>

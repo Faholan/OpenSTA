@@ -1224,7 +1224,7 @@ streamPrint(ofstream &stream,
   va_start(args, fmt);
   char *result = nullptr;
   if (vasprintf(&result, fmt, args) == -1)
-    criticalError(267, "out of memory");
+    criticalError(267, "out of memory");  //LCOV_EXCL_LINE
   stream << result;
   free(result);
   va_end(args);

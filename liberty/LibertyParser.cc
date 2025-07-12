@@ -390,12 +390,14 @@ LibertySimpleAttr::~LibertySimpleAttr()
   delete value_;
 }
 
+//LCOV_EXCL_START
 LibertyAttrValueSeq *
 LibertySimpleAttr::values() const
 {
   criticalError(1125, "valueIterator called for LibertySimpleAttribute");
   return nullptr;
 }
+//LCOV_EXCL_STOP
 
 LibertyComplexAttr::LibertyComplexAttr(const char *name,
 				       LibertyAttrValueSeq *values,
@@ -428,12 +430,14 @@ LibertyStringAttrValue::LibertyStringAttrValue(const char *value) :
 {
 }
 
+//LCOV_EXCL_START
 float
 LibertyStringAttrValue::floatValue()
 {
   criticalError(1126, "LibertyStringAttrValue called for float value");
   return 0.0;
 }
+//LCOV_EXCL_STOP
 
 const char *
 LibertyStringAttrValue::stringValue()
@@ -452,12 +456,14 @@ LibertyFloatAttrValue::floatValue()
   return value_;
 }
 
+//LCOV_EXCL_START
 const char *
 LibertyFloatAttrValue::stringValue()
 {
   criticalError(1127, "LibertyStringAttrValue called for float value");
   return nullptr;
 }
+//LCOV_EXCL_STOP
 
 ////////////////////////////////////////////////////////////////
 
@@ -502,7 +508,7 @@ bool
 LibertyScanner::includeBegin()
 {
   if (stream_prev_ != nullptr)
-    error("nested include_file's are not supported");
+    error("nested include_file's are not supported");  //LCOV_EXCL_LINE
   else {
     // include_file(filename);
     std::regex include_regexp("include_file *\\( *([^)]+) *\\) *;?");
@@ -522,13 +528,15 @@ LibertyScanner::includeBegin()
         return true;
       }
       else {
+        //LCOV_EXCL_START
         report_->fileWarn(25, filename_.c_str(), yylineno,
                           "cannot open include file %s.", filename.c_str());
         delete stream;
+        //LCOV_EXCL_STOP
       }
     }
     else
-      error("include_file syntax error.");
+      error("include_file syntax error.");  //LCOV_EXCL_LINE
   }
   return false;
 }

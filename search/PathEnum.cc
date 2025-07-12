@@ -624,7 +624,7 @@ PathEnum::makeDivertedPath(Path *path,
     first = false;
   }
   if (!found_div)
-    criticalError(280, "diversion path not found");
+    criticalError(280, "diversion path not found");  //LCOV_EXCL_LINE
 }
 
 void

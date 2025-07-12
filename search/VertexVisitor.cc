@@ -34,12 +34,14 @@ VertexPinCollector::VertexPinCollector(PinSet &pins) :
 {
 }
 
+//LCOV_EXCL_START
 VertexVisitor *
 VertexPinCollector::copy() const
 {
   criticalError(266, "VertexPinCollector::copy not supported.");
   return nullptr;
 }
+//LCOV_EXCL_STOP
 
 void
 VertexPinCollector::visit(Vertex *vertex)

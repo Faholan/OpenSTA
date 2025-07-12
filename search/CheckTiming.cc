@@ -435,7 +435,7 @@ CheckTiming::errorMsgSubst(const char *msg,
 	s++;
       }
       else
-	criticalError(245, "unknown print flag");
+	criticalError(245, "unknown print flag");  //LCOV_EXCL_LINE
     }
     else
       error_msg += ch;

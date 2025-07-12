@@ -115,12 +115,14 @@ evalTclInit(Tcl_Interp *interp,
 {
   char *unencoded = unencode(inits);
   if (Tcl_Eval(interp, unencoded) != TCL_OK) {
+    //LCOV_EXCL_START
     // Get a backtrace for the error.
     Tcl_Eval(interp, "$errorInfo");
     const char *tcl_err = Tcl_GetStringResult(interp);
     fprintf(stderr, "Error: TCL init script: %s.\n", tcl_err);
     fprintf(stderr, "       Try deleting TclInitVar.cc and rebuilding.\n");
     exit(0);
+    //LCOV_EXCL_STOP
   }
   delete [] unencoded;
 }

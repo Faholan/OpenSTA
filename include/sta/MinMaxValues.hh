@@ -119,8 +119,10 @@ public:
     if (exists)
       return values_[mm_index];
     else {
+      //LCOV_EXCL_START
       criticalError(226, "uninitialized value reference");
       return 0.0;
+      //LCOV_EXCL_STOP
     }
   }
 

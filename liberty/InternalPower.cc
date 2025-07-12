@@ -202,10 +202,12 @@ InternalPowerModel::findAxisValues(float in_slew,
     axis_value3 = axisValue(model_->axis3(), in_slew, load_cap);
     break;
   default:
+    //LCOV_EXCL_START
     axis_value1 = 0.0;
     axis_value2 = 0.0;
     axis_value3 = 0.0;
     criticalError(225, "unsupported table order");
+    //LCOV_EXCL_STOP
   }
 }
 
@@ -220,8 +222,10 @@ InternalPowerModel::axisValue(const TableAxis *axis,
   else if (var == TableAxisVariable::total_output_net_capacitance)
     return load_cap;
   else {
+    //LCOV_EXCL_START
     criticalError(226, "unsupported table axes");
     return 0.0;
+    //LCOV_EXCL_STOP
   }
 }
 

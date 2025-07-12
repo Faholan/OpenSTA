@@ -122,7 +122,7 @@ ObjectTable<TYPE>::makeBlock()
   TableBlock<TYPE> *block = new TableBlock<TYPE>(block_index, this);
   blocks_.push_back(block);
   if (blocks_.size() >= block_id_max)
-    criticalError(224, "max object table block count exceeded.");
+    criticalError(224, "max object table block count exceeded.");  //LCOV_EXCL_LINE
   // ObjectId zero is reserved for object_id_null.
   int last = (block_index > 0) ? 0 : 1;
   for (int i = block_object_count - 1; i >= last; i--) {
@@ -150,7 +150,7 @@ TYPE &
 ObjectTable<TYPE>::ref(ObjectId id) const
 {
   if (id == object_id_null)
-    criticalError(225, "null ObjectId reference is undefined.");
+    criticalError(225, "null ObjectId reference is undefined.");  //LCOV_EXCL_LINE
   else {
     BlockIdx blk_idx = id >> idx_bits;
     ObjectIdx obj_idx = id & idx_mask_;

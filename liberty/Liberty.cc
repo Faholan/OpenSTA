@@ -368,8 +368,10 @@ LibertyLibrary::degradeWireSlew(const TableModel *model,
     else if (var1 == TableAxisVariable::connect_delay)
       return model->findValue(wire_delay, 0.0, 0.0);
     else {
+      //LCOV_EXCL_START
       criticalError(1116, "unsupported slew degradation table axes");
       return 0.0;
+      //LCOV_EXCL_STOP
     }
   }
   case 2: {
@@ -384,13 +386,17 @@ LibertyLibrary::degradeWireSlew(const TableModel *model,
 	     && var2 == TableAxisVariable::output_pin_transition)
       return model->findValue(wire_delay, in_slew, 0.0);
     else {
+      //LCOV_EXCL_START
       criticalError(1117, "unsupported slew degradation table axes");
       return 0.0;
+      //LCOV_EXCL_STOP
     }
   }
   default:
+    //LCOV_EXCL_START
     criticalError(1118, "unsupported slew degradation table order");
     return 0.0;
+    //LCOV_EXCL_STOP
   }
 }
 
@@ -419,8 +425,10 @@ LibertyLibrary::checkSlewDegradationAxes(const TablePtr &table)
 	  && var2 == TableAxisVariable::output_pin_transition);
   }
   default:
+    //LCOV_EXCL_START
     criticalError(1119, "unsupported slew degradation table axes");
     return 0.0;
+    //LCOV_EXCL_STOP
   }
 }
 
@@ -1395,7 +1403,7 @@ LibertyCell::makeTimingArcMap(Report *)
   timing_arc_sets_.resize(j);
 
   if (timing_arc_set_map_.size() != timing_arc_sets_.size())
-    criticalError(1121, "timing arc count mismatch");
+    criticalError(1121, "timing arc count mismatch");  //LCOV_EXCL_LINE
 }
 
 void
@@ -1977,7 +1985,7 @@ LibertyCell::ensureVoltageWaveforms(const DcalcAnalysisPtSeq &dcalc_aps)
       bool vdd_exists;
       liberty_library_->supplyVoltage("VDD", vdd, vdd_exists);
       if (!vdd_exists || vdd == 0.0)
-        criticalError(1120, "library missing vdd");
+        criticalError(1120, "library missing vdd");  //LCOV_EXCL_LINE
       for (TimingArcSet *arc_set : timingArcSets()) {
         for (TimingArc *arc : arc_set->arcs()) {
           for (const DcalcAnalysisPt *dcalc_ap : dcalc_aps) {

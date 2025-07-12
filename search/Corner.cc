@@ -377,8 +377,10 @@ Corner::findParasiticAnalysisPt(const MinMax *min_max) const
   else if (ap_count == 2)
     return parasitic_analysis_pts_[min_max->index()];
   else {
+    //LCOV_EXCL_START
     criticalError(246, "unknown parasitic analysis point count");
     return nullptr;
+    //LCOV_EXCL_STOP
   }
 }
 
@@ -421,8 +423,10 @@ Corner::findDcalcAnalysisPt(const MinMax *min_max) const
   else if (ap_count == 2)
     return dcalc_analysis_pts_[min_max->index()];
   else {
+    //LCOV_EXCL_START
     criticalError(247, "unknown analysis point count");
     return nullptr;
+    //LCOV_EXCL_STOP
   }
 }
 

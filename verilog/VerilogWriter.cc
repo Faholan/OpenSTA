@@ -263,8 +263,10 @@ VerilogWriter::verilogPortDir(PortDirection *dir)
            || dir == PortDirection::unknown())
     return "inout";
   else {
+    //LCOV_EXCL_START
     criticalError(268, "unknown port direction");
     return nullptr;
+    //LCOV_EXCL_STOP
   }
 }
 

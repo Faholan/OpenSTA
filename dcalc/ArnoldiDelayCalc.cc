@@ -617,7 +617,7 @@ void arnoldi1::calculate_poles_res(delay_work *D,double rdrive)
   dsave = d[0];
   d[0] += rdrive*ctot;
   if (!tridiagEV(order,d,e,p,v))
-    criticalError(204, "arnoldi delay calc failed.");
+    criticalError(204, "arnoldi delay calc failed.");  //LCOV_EXCL_LINE
   d[0] = dsave;
 
   for (h=0;h<order;h++) {

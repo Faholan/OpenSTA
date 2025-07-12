@@ -233,8 +233,10 @@ void
 stringDeleteCheck(const char *str)
 {
   if (isTmpString(str)) {
+    //LCOV_EXCL_START
     printf("Critical error: stringDelete for tmp string.");
     exit(1);
+    //LCOV_EXCL_STOP
   }
 }
 

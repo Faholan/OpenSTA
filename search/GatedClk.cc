@@ -252,9 +252,11 @@ GatedClk::gatedClkActiveTrans(LogicValue active_value,
     leading_rf = RiseFall::fall();
     break;
   default:
+    //LCOV_EXCL_START
     criticalError(249, "illegal gated clock active value");
     leading_rf = RiseFall::rise();
     break;
+    //LCOV_EXCL_STOP
   }
   if (min_max == MinMax::max())
     return leading_rf;
